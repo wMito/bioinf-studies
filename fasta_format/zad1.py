@@ -3,9 +3,10 @@ import re
 
 
 
-class FASTA_format():  
+class FASTAFormat():  
     """
-    Handles FASTA files. Splits and saves sequences in a dictionary that can be used to create further summaries. 
+    Handles FASTA files. 
+    Splits and saves sequences in a dictionary that can be used to create further summaries. 
     """
     
     
@@ -13,13 +14,13 @@ class FASTA_format():
         self.source_file = None
         self.dict = None
     
-    def read_FASTA(self, file, del_gaps):
+    def read_FASTA(self, filename, del_gaps):
         """
         Creates self.dict which contains a dictionary with all sequences extracted from the FASTA file.
         It also saves the file path for __repr__ and debugging purposes.
         """
-        self.source_file = file
-        with open(file) as dump:
+        self.source_file = filename
+        with open(filename) as dump:
             f = dump.read()
         
         self.dict = {d:s for (d,s) in zip(self.get_descr(f), self.get_seqs(f, del_gaps))}
